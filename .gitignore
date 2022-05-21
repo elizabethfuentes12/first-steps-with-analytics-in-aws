@@ -127,3 +127,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+*.ipynb_checkpoints
+*.ipynb
+*.xlsx
+*.DS_Store
+*.drawio
+*.DS_Store
+*.pptx
