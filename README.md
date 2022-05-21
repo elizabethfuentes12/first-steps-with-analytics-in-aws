@@ -4,9 +4,9 @@
 
 ---
 
-## Introducción
+## Introducción 👩🏻‍💻👋
 
-**Data analytcs** es un concepto muy utilizado hoy en dia, ya es casi un pecado no saber que **Data Analytics** es el proceso de compilar, procesar y analizar datos para que puedas usarlos en la tomar decisiones.
+**Data analytics** 📉 es un concepto muy utilizado hoy en dia, ya es casi un pecado no saber que **Data Analytics** es el proceso de compilar, procesar y analizar datos para que puedas usarlos en la tomar decisiones.
 
 El análisis de datos es vital para que las empresas, no importa su tamaño. 
 
@@ -22,13 +22,18 @@ El desafio cuando tienes varias fuentes de datos es almacenarla toda junta para 
 
 En esta blog te voy a entregar las herramientas que te va a permitir darle solución a ese desafío, no solo vas a aprender como almacenar toda la data junta si no como crear una base de datos con ella y por supuesto crear un dashboard. 
 
-Y.. Lo podrás desplegar listo para usar con un par de comandos usando [CDK](https://aws.amazon.com/es/cdk/?nc1=h_ls).
+Y.. Lo podrás desplegar listo para usar con un par de comandos usando [CDK](https://aws.amazon.com/es/cdk/?nc1=h_ls) 🚀 👩🏻‍🚀.
 
 ---
 
-## Solución 🤔 ⚙️
+## La Solución 🤔 ⚙️
 
 ![fase1](imagen/fase1.jpg)
+
+1. Se deja el archivo en el Bucket de [Amazon S3](https://aws.amazon.com/es/s3/), lo cual activa la [AWS Lambda](https://aws.amazon.com/es/lambda/) que gatilla el [AWS Glue Crawler](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html).
+2. El [AWS Glue Crawler](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html) explora el nuevo archivo, y en paralelo gatilla un evento en EnventBridge que aciva la [AWS Lambda](https://aws.amazon.com/es/lambda/) encargada de actualizar a QuickSight una vez finalice la exploración. 
+3. Una vez finalizada la exploracion de [AWS Glue Crawler](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html) este actualiza el [AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html) , el cual a su vez actualiza la tabla en [Amazon Athena](https://aws.amazon.com/es/athena/) , el [Amazon EventBridge](https://aws.amazon.com/es/eventbridge/) informa a la [AWS Lambda](https://aws.amazon.com/es/lambda/) para que pueda actualizar el almacenamiento de Spice en [Amazon QuickSight](https://aws.amazon.com/es/quicksight/) desde la data en [Amazon Athena](https://aws.amazon.com/es/athena/). 
+4. Queda el DashBoard de [Amazon QuickSight](https://aws.amazon.com/es/quicksight/) listo para hacer Data Analytics.  
 
 ---
 
@@ -125,22 +130,6 @@ export AWS_PROFILE=mi-profile-custom
 cdk deploy
 ```
 
-### 7. Tips Para el despliegue
-
-
-El despliegue lo utiliza utilizando las credenciales por defecto de AWS, si desea usar un profile específico agregue --profile <nombre> al comando deploy:
-
-```
-cdk deploy --profile mi-profile-custom
-```
-
-o simplemente exporte en una variable de entorno
-
-```
-export AWS_PROFILE=mi-profile-custom
-cdk deploy
-```
-
 ---
 
 ### 8. La aplicación
@@ -173,6 +162,18 @@ cdk destroy
 
 ![fase2](imagen/fase2.jpg)
 
+En este adicional, en vez de dejar un archivo en [Amazon S3](https://aws.amazon.com/es/s3/) se deja en una carpeta de OneDrive. 
+
+1. Se deja el archivo en la carpeta de OneDrive, la cual esta siendo escuchada con un Webhook en [Amazon API Gateway](https://aws.amazon.com/es/api-gateway/). 
+2. [Amazon API Gateway](https://aws.amazon.com/es/api-gateway/) activa una [AWS Lambda](https://aws.amazon.com/es/lambda/) encargada de extraer la data de OneDrive y copiarla en S3, para que esto sea posible la Lambda debe obtener el Token y refresh_token desde [AWS Secrets Manager](https://aws.amazon.com/es/secrets-manager/). 
+4. Retomamos el paso 1 de la arquitectura de la solucion anterior. 
+
+
+El código para lograr esta solucion se encontrara proximamente en los siguientes enlaces: 
+
+Configuración Lambda Funtcion paso 2. 
+Configuración API Gateway.
+Condiguración Secrets Manager. 
 
 ___
 
@@ -185,25 +186,25 @@ ___
 [AWS Lambda](https://aws.amazon.com/es/lambda/) es un servicio de computo sin servidor que le permite ejecutar código sin aprovisionar ni administrar servidores. 
 
 ### AWS Glue Crawler: 
-[AWS Glue Crawler:](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html) Es un servicio de AWS, que te permite desubrir data, reconoce su esquema o columnas, el tipos de dato, arma un catalogo de glue. Se puede ejecutar a demanda o agendados. 
+[AWS Glue Crawler](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html) Es un servicio de AWS, que te permite desubrir data, reconoce su esquema o columnas, el tipos de dato, arma un catalogo de glue. Se puede ejecutar a demanda o agendados. 
 
 ### AWS Glue Data Catalog: 
-[AWS Glue Data Catalog:](https://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html) contiene referencias a los datos, es un índice de la ubicación,al esquema y al tiempo de creación. La información en los catalogos se almacena como tablas de metadatos, donde cada tabla hace referencia a un único almacen de datos. 
+[AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html) contiene referencias a los datos, es un índice de la ubicación,al esquema y al tiempo de creación. La información en los catalogos se almacena como tablas de metadatos, donde cada tabla hace referencia a un único almacen de datos. 
 
 ### Amazon Athena: 
-[Amazon Athena:](https://aws.amazon.com/es/athena/) es un servicio de consultas interactivo que facilita el análisis de datos en Amazon S3 con SQL estándar. Athena no tiene servidor, de manera que no es necesario administrar infraestructura y solo paga por las consultas que ejecuta.
+[Amazon Athena](https://aws.amazon.com/es/athena/) es un servicio de consultas interactivo que facilita el análisis de datos en Amazon S3 con SQL estándar. Athena no tiene servidor, de manera que no es necesario administrar infraestructura y solo paga por las consultas que ejecuta.
 
 ### Amazon EventBridge: 
-[Amazon EventBridge:](https://aws.amazon.com/es/eventbridge/) es un bus de eventos sin servidor que facilita la creación de aplicaciones basadas en eventos a escala mediante eventos generados por sus aplicaciones, aplicaciones integradas de software como servicio (SaaS) y servicios de AWS.
+[Amazon EventBridge](https://aws.amazon.com/es/eventbridge/) es un bus de eventos sin servidor que facilita la creación de aplicaciones basadas en eventos a escala mediante eventos generados por sus aplicaciones, aplicaciones integradas de software como servicio (SaaS) y servicios de AWS.
 
 ### Amazon QuickSight: 
-[Amazon QuickSight:](https://aws.amazon.com/es/quicksight/) es un servicio de análisis empresarial muy rápido, fácil de utilizar y administrado en la nube que facilita a todos los empleados de una organización la compilación de visualizaciones, la realización de análisis ad-hoc y la obtención rápida de información empresarial a partir de sus datos en cualquier momento y en cualquier dispositivo.
+[Amazon QuickSight](https://aws.amazon.com/es/quicksight/) es un servicio de análisis empresarial muy rápido, fácil de utilizar y administrado en la nube que facilita a todos los empleados de una organización la compilación de visualizaciones, la realización de análisis ad-hoc y la obtención rápida de información empresarial a partir de sus datos en cualquier momento y en cualquier dispositivo.
 
 ### Amazon API Gateway: 
-[Amazon API Gateway:](https://aws.amazon.com/es/api-gateway/) es un servicio completamente administrado que facilita a los desarrolladores la creación, la publicación, el mantenimiento, el monitoreo y la protección de API a cualquier escala. Las API actúan como la "puerta de entrada" para que las aplicaciones accedan a los datos, la lógica empresarial o la funcionalidad de sus servicios de backend. 
+[Amazon API Gateway](https://aws.amazon.com/es/api-gateway/) es un servicio completamente administrado que facilita a los desarrolladores la creación, la publicación, el mantenimiento, el monitoreo y la protección de API a cualquier escala. Las API actúan como la "puerta de entrada" para que las aplicaciones accedan a los datos, la lógica empresarial o la funcionalidad de sus servicios de backend. 
 
 ### AWS Secrets Manager: 
-[AWS Secrets Manager:](https://aws.amazon.com/es/secrets-manager/) le ayuda a proteger los datos confidenciales necesarios para acceder a sus aplicaciones, servicios y recursos de TI. El servicio le permite alternar, administrar y recuperar fácilmente credenciales de bases de datos, claves de API y otros datos confidenciales durante su ciclo de vida. Los usuarios y las aplicaciones recuperan datos confidenciales con una llamada a las API de Secrets Manager, lo que elimina la necesidad de codificar información confidencial en texto sin formato
+[AWS Secrets Manager](https://aws.amazon.com/es/secrets-manager/) le ayuda a proteger los datos confidenciales necesarios para acceder a sus aplicaciones, servicios y recursos de TI. El servicio le permite alternar, administrar y recuperar fácilmente credenciales de bases de datos, claves de API y otros datos confidenciales durante su ciclo de vida. Los usuarios y las aplicaciones recuperan datos confidenciales con una llamada a las API de Secrets Manager, lo que elimina la necesidad de codificar información confidencial en texto sin formato
 
 
 ### CDK (Cloud Development Kit): 
