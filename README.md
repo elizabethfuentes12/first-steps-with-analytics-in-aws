@@ -8,7 +8,7 @@
 
 ## Introducción 👩🏻‍💻👋
 
-**Data Analytics** es un concepto muy utilizado hoy en día, es casi un pecado no saber que **Data Analytics** es el proceso de recompilar, procesar y analizar datos para usarlos tomar decisiones en base a ellos.
+**Data Analytics** 📉 es un concepto muy utilizado hoy en día, es casi un pecado no saber que **Data Analytics** es el proceso de recompilar, procesar y analizar datos para usarlos tomar decisiones en base a ellos.
 
 **Data Analytics** te permite combinar datos para crear soluciones que ayuden a las empresas a decidir donde y cuando lanzar nuevos productos, cuando ofrecer descuentos, analizar gastos y buscar ahorros, es posible crear modelos de machine learning para realizar mejoras como customer personalization, detención de fraude, alertas en tiempo real, comportamiento de tus usuarios y crear modelos que mejoren financias y predigan la forma de hacer mejores inversiones. 
 
@@ -22,7 +22,7 @@ Y.. Lo podrás desplegar listo para usar con un par de comandos usando [CDK](htt
 
 ---
 
-## La Solución 🤔 ⚙️
+## La Solución 📉 🤔 ⚙️
 
 ![fase1](imagen/fase1.jpg)
 
@@ -73,7 +73,7 @@ Para que el ambiente pueda desplegarse, debemos agregar todas las librerías CDK
 pip install -r requirements.txt
 ```
 
-### 5. Desplegando la aplicación
+### 5. Desplegando la aplicación 🚚
 
 Si deseas desplegar tu solución en una region especifica debes modificar el archivo [app.py](https://github.com/elizabethfuentes12/first-steps-with-analytics-in-aws/first-steps-analytics/app.py) la siguiente linea: 
 
@@ -101,7 +101,7 @@ Procedemos a desplegar la aplicación:
 cdk deploy
 ```
 
-### 6. Tips Para el despliegue
+### 6. Tips Para el despliegue 👩🏻‍💻
 
 
 El despliegue lo utiliza utilizando las credenciales por defecto de AWS, si desea usar un profile específico agregue --profile <nombre> al comando deploy:
@@ -117,9 +117,9 @@ export AWS_PROFILE=mi-profile-custom
 cdk deploy
 ```
 
----
 
-### 7. La aplicación
+
+### 7. La aplicación 👩🏻‍💻
 
 Este CDK creará los siguientes elementos:
 - Bucket de S3 con el nombre **starting-etl-from-file-inputfilesXXXXXXXXXX**
@@ -154,7 +154,7 @@ Puedes explotar la tabla con Athena:
 ![athena](imagen/athena.png)
 
 
-### 8. Crear un Dashboard en [Amazon QuickSight](https://aws.amazon.com/es/quicksight/)
+### 8. Crear un Dashboard en [Amazon QuickSight](https://aws.amazon.com/es/quicksight/) 📉🚀🖥️
 
 Documentación oficial de [Amazon QuickSight](https://docs.aws.amazon.com/es_es/quicksight/latest/user/signing-up.html)
 
@@ -195,7 +195,7 @@ Aprovecha la capa gratuita de [QuickSight](https://aws.amazon.com/es/quicksight/
 
 ---
 
-### 8. Eliminar el stack de la aplicación
+### 8. Eliminar el stack de la aplicación 🚫
 
 Esta aplicación no elimina el bucket si contiene videos, por lo que primero debes vaciar el bucket y luego proceder a destruir el stak. 
 
@@ -225,11 +225,7 @@ En este adicional, en vez de dejar un archivo en [Amazon S3](https://aws.amazon.
 4. Retomamos el paso 1 de la arquitectura de la solucion anterior. 
 
 
-El código para lograr esta solucion se encontrara proximamente en los siguientes enlaces: 
-
-Configuración Lambda Funtcion paso 2. 
-Configuración API Gateway.
-Condiguración Secrets Manager. 
+🔜 Pronto en una próxima publicación.. 
 
 ___
 
