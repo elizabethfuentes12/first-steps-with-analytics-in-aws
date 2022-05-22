@@ -1,4 +1,4 @@
-# Primeros pasos con analitica en AWS
+# Primeros pasos con Data Analytics en AWS
 
 ![Portada](imagen/cover.png)
 
@@ -29,7 +29,7 @@ Y.. Lo podrás desplegar listo para usar con un par de comandos usando [CDK](htt
 1. Se deja el archivo en el Bucket de [Amazon S3](https://aws.amazon.com/es/s3/), lo cual activa la [AWS Lambda](https://aws.amazon.com/es/lambda/) que inicia el [AWS Glue Crawler](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html).
 2. El [AWS Glue Crawler](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html) explora el nuevo archivo para identificar el esquema (columas), tipo de datos que lo conforman (int, string..etc).
 3. Una vez finalizada la exploración de [AWS Glue Crawler](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html) este crea/actualiza la tabla asociada a la data descubierta en el [AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html), el cual a su vez permite que se acceda a la tabla utilizando [Amazon Athena](https://aws.amazon.com/es/athena/). 
-4. Queda el DashBoard de [Amazon QuickSight](https://aws.amazon.com/es/quicksight/) listo para hacer Data Analytics.  
+4. Una vez creado el el DashBoard de [Amazon QuickSight](https://aws.amazon.com/es/quicksight/) desde query a data en Athena queda listo para hacer Data Analytics.  
 
 ---
 
@@ -149,7 +149,49 @@ En el Catálogo de AWS Glue puedes acceder a la base de dato y a las tablas crea
 
 ![catalogo](imagen/catalogo.png)
 
+Puedes explotar la tabla con Athena:
 
+![athena](imagen/athena.png)
+
+
+### 8. Crear un Dashboard en [Amazon QuickSight](https://aws.amazon.com/es/quicksight/)
+
+Documentación oficial de [Amazon QuickSight](https://docs.aws.amazon.com/es_es/quicksight/latest/user/signing-up.html)
+
+![quicksght](imagen/quicksight.png)
+
+Si nunca has usado Amazon QuickSight debes crear una cuenta. 
+
+1. Al ingresar verás una pantalla como esta, debes presionar **"Sign up for QuickSight"**
+
+![quicksght1](imagen/quicksight1.png)
+
+2. A continuación debes escoger el tipo de cuenta que quieres crear y seguir los pasos, recuerda darle permiso a QuickSight para acceder a la data, para más infomación [aca](https://aws.amazon.com/es/quicksight/pricing/).
+
+![quicksght2](imagen/quicksight2.png)
+
+3. Listo!, ingresa a tu cuenta. 
+![quicksght3](imagen/quicksight3.png)
+
+4. Una vez dentro de [Amazon QuickSight](https://aws.amazon.com/es/quicksight/) vamos a [Datasets](https://us-east-1.quicksight.aws.amazon.com/sn/start/data-sets) --> New dataSet y dentro del mar de opciones seleccionamos Athena, sigue los pasos y cuando llegues a esta ventana selecciona la opción **Directly query your data**, [**SPICE**](https://docs.aws.amazon.com/quicksight/latest/user/spice.html) es un almacenamiento en QuickSight que te le entrega mayor rendimiento a tu Dashboard, pero la data en el debe ser actualizada no se actualiza automaticamente.  
+
+![quicksight4](imagen/quicksight4.png)
+
+4. En el paso anterior puedes editar el dataset con Edit/Preview data, una vez dentro puedes seleccionar los **...** de las columnas y ver las opciones de edición, presiona **Publish & Visualizalise** para avanzar. 
+
+![quicksight5](imagen/quicksight5.png)
+
+5. Creea tu Dashboard para empezar a hacer Data Analytics. 
+
+AWS tiene material gratuito que te puede ayudar a convertite en un usario experto de [Amazon QuickSight](https://aws.amazon.com/es/quicksight/): 
+
+[AWS WorkShops](https://workshops.aws/card/quicksight)
+
+[AWS SkillBuilder](https://explore.skillbuilder.aws/learn/global-search/quicksight ) - Puedes ingresar con tu correo personal. 
+
+Aprovecha la capa gratuita de QuickSight](https://aws.amazon.com/es/quicksight/) para que metas las manos. 
+
+![quicksight6](imagen/quicksight6.png)
 
 ---
 
