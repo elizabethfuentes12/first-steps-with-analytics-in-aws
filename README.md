@@ -75,13 +75,13 @@ pip install -r requirements.txt
 
 ### 5. Desplegando la aplicación 🚚
 
-Si deseas desplegar tu solución en una region especifica debes modificar el archivo [app.py](https://github.com/elizabethfuentes12/first-steps-with-analytics-in-aws/first-steps-analytics/app.py) la siguiente linea: 
+Si deseas desplegar tu solución en una región especifica debes modificar el archivo [app.py](https://github.com/elizabethfuentes12/first-steps-with-analytics-in-aws/first-steps-analytics/app.py) la siguiente linea: 
 
 ```zsh
 env=cdk.Environment(region='us-east-1')
 ```
 
-Antes de esplegar debemos asegurarnos que el código este sin errores, eso lo hacemos con el siguiente comando donde se genera un template de cloudformation con nuestra definición de recursos en python.
+Antes de desplegar debemos asegurarnos que el código este sin errores, eso lo hacemos con el siguiente comando donde se genera un template de cloudformation con nuestra definición de recursos en python.
 
 ```bash
 cdk synth
@@ -166,14 +166,14 @@ Si nunca has usado Amazon QuickSight debes crear una cuenta.
 
 ![quicksght1](imagen/quicksight1.png)
 
-2. A continuación debes escoger el tipo de cuenta que quieres crear y seguir los pasos, recuerda darle permiso a QuickSight para acceder a la data, para más infomación [aca](https://aws.amazon.com/es/quicksight/pricing/).
+2. A continuación debes escoger el tipo de cuenta que quieres crear y seguir los pasos, recuerda darle permiso a QuickSight para acceder a la data, para más información [aca](https://aws.amazon.com/es/quicksight/pricing/).
 
 ![quicksght2](imagen/quicksight2.png)
 
 3. Listo!, ingresa a tu cuenta. 
 ![quicksght3](imagen/quicksight3.png)
 
-4. Una vez dentro de [Amazon QuickSight](https://aws.amazon.com/es/quicksight/) vamos a [Datasets](https://us-east-1.quicksight.aws.amazon.com/sn/start/data-sets) --> New dataSet y dentro del mar de opciones seleccionamos Athena, sigue los pasos y cuando llegues a esta ventana selecciona la opción **Directly query your data**, [**SPICE**](https://docs.aws.amazon.com/quicksight/latest/user/spice.html) es un almacenamiento en QuickSight que te le entrega mayor rendimiento a tu Dashboard, pero la data en el debe ser actualizada no se actualiza automaticamente.  
+4. Una vez dentro de [Amazon QuickSight](https://aws.amazon.com/es/quicksight/) vamos a [Datasets](https://us-east-1.quicksight.aws.amazon.com/sn/start/data-sets) --> New dataSet y dentro del mar de opciones seleccionamos Athena, sigue los pasos y cuando llegues a esta ventana selecciona la opción **Directly query your data**, [**SPICE**](https://docs.aws.amazon.com/quicksight/latest/user/spice.html) es un almacenamiento en QuickSight que te le entrega mayor rendimiento a tu Dashboard, pero la data en el debe ser actualizada no se actualiza automáticamente.  
 
 ![quicksight4](imagen/quicksight4.png)
 
@@ -181,13 +181,13 @@ Si nunca has usado Amazon QuickSight debes crear una cuenta.
 
 ![quicksight5](imagen/quicksight5.png)
 
-5. Creea tu Dashboard para empezar a hacer Data Analytics. 
+5. Crea tu Dashboard para empezar a hacer Data Analytics. 
 
 AWS tiene material gratuito que te puede ayudar a convertite en un usario experto de [Amazon QuickSight](https://aws.amazon.com/es/quicksight/): 
 
 [AWS WorkShops](https://workshops.aws/card/quicksight)
 
-[AWS SkillBuilder](https://explore.skillbuilder.aws/learn/global-search/quicksight ) - Puedes ingresar con tu correo personal. 
+[AWS SkillBuilder](https://explore.skillbuilder.aws/learn/global-search/quicksight ) - Puedes registrarte con tu correo personal. 
 
 Aprovecha la capa gratuita de [QuickSight](https://aws.amazon.com/es/quicksight/) para que metas las manos. 
 
