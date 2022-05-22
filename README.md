@@ -189,7 +189,7 @@ AWS tiene material gratuito que te puede ayudar a convertite en un usario expert
 
 [AWS SkillBuilder](https://explore.skillbuilder.aws/learn/global-search/quicksight ) - Puedes ingresar con tu correo personal. 
 
-Aprovecha la capa gratuita de QuickSight](https://aws.amazon.com/es/quicksight/) para que metas las manos. 
+Aprovecha la capa gratuita de [QuickSight](https://aws.amazon.com/es/quicksight/) para que metas las manos. 
 
 ![quicksight6](imagen/quicksight6.png)
 
