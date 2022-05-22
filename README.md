@@ -173,7 +173,7 @@ Si nunca has usado Amazon QuickSight debes crear una cuenta.
 3. Listo!, ingresa a tu cuenta. 
 ![quicksght3](imagen/quicksight3.png)
 
-4. Una vez dentro de [Amazon QuickSight](https://aws.amazon.com/es/quicksight/) vamos a [Datasets](https://us-east-1.quicksight.aws.amazon.com/sn/start/data-sets) --> New dataSet y dentro del mar de opciones seleccionamos Athena, sigue los pasos y cuando llegues a esta ventana selecciona la opción **Directly query your data**, [**SPICE**](https://docs.aws.amazon.com/quicksight/latest/user/spice.html) es un almacenamiento en QuickSight que te le entrega mayor rendimiento a tu Dashboard, pero la data en el debe ser actualizada no se actualiza automáticamente.  
+4. Una vez dentro de [Amazon QuickSight](https://aws.amazon.com/es/quicksight/) vamos a [Datasets](https://us-east-1.quicksight.aws.amazon.com/sn/start/data-sets) --> New dataSet y dentro del mar de opciones seleccionamos Athena, sigue los pasos y cuando llegues a esta ventana selecciona la opción **Directly query your data**, [**SPICE**](https://docs.aws.amazon.com/quicksight/latest/user/spice.html) es un almacenamiento en QuickSight que entrega mayor rendimiento a tu Dashboard, pero la data debe ser actualizada no se actualiza automáticamente.  
 
 ![quicksight4](imagen/quicksight4.png)
 
