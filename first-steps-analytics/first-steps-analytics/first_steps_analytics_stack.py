@@ -92,6 +92,7 @@ class StartingEltFromFileStack(Stack):
             database_name=glue_db.database_name,
             schedule=None,
             role=glue_role.role_arn,
+            table_prefix="demoetl_",
             targets={"s3Targets": [{"path": "s3://{}/{}".format(input_bucket.bucket_name, S3_RAW_PREFIX)}]}
         )
 

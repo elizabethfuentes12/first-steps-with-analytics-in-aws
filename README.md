@@ -16,7 +16,7 @@ El **Data Analytics** es importante para las empresas sin importar su tamaño, s
 
 La data se puede generar de varias formas, recopilando clics de una página web, través de una API, encuestas, bases de datos locales, si sabés donde mirar prácticamente todo es data. El desafío está en almacenarla en un mismo lugar, crear Data Lakes, para poder hacer cruces y análisis con ella, hacer uso de ella. 
 
-En este blog te voy a mostrar cómo crear un pequeño pipeline de **Data Analytics**, donde se deja un archivo en un storage y de ahí es procesado para crear una tabla dentro de una base de datos de la cual se alimenta un dasboard de Business Inteligence. 
+En este blog te voy a mostrar cómo crear un pequeño pipeline de **Data Analytics**, donde se deja un archivo en un storage y de ahí es procesado para crear una tabla de la cual se alimentá un dahsboard de Business Inteligence. 
 
 Y.. Lo podrás desplegar listo para usar con un par de comandos usando [CDK](https://aws.amazon.com/es/cdk/?nc1=h_ls) 🚀 👩🏻‍🚀.
 
@@ -26,9 +26,9 @@ Y.. Lo podrás desplegar listo para usar con un par de comandos usando [CDK](htt
 
 ![fase1](imagen/fase1.jpg)
 
-1. Se deja el archivo en el Bucket de [Amazon S3](https://aws.amazon.com/es/s3/), lo cual activa la [AWS Lambda](https://aws.amazon.com/es/lambda/) que gatilla el [AWS Glue Crawler](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html).
-2. El [AWS Glue Crawler](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html) explora el nuevo archivo, y en paralelo gatilla un evento en EnventBridge que aciva la [AWS Lambda](https://aws.amazon.com/es/lambda/) encargada de actualizar a QuickSight una vez finalice la exploración. 
-3. Una vez finalizada la exploracion de [AWS Glue Crawler](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html) este actualiza el [AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html) , el cual a su vez actualiza la tabla en [Amazon Athena](https://aws.amazon.com/es/athena/) , el [Amazon EventBridge](https://aws.amazon.com/es/eventbridge/) informa a la [AWS Lambda](https://aws.amazon.com/es/lambda/) para que pueda actualizar el almacenamiento de Spice en [Amazon QuickSight](https://aws.amazon.com/es/quicksight/) desde la data en [Amazon Athena](https://aws.amazon.com/es/athena/). 
+1. Se deja el archivo en el Bucket de [Amazon S3](https://aws.amazon.com/es/s3/), lo cual activa la [AWS Lambda](https://aws.amazon.com/es/lambda/) que inicia el [AWS Glue Crawler](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html).
+2. El [AWS Glue Crawler](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html) explora el nuevo archivo para identificar el esquema (columas), tipo de datos que lo conforman (int, string..etc).
+3. Una vez finalizada la exploración de [AWS Glue Crawler](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html) este crea/actualiza la tabla asociada a la data descubierta en el [AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html), el cual a su vez permite que se acceda a la tabla utilizando [Amazon Athena](https://aws.amazon.com/es/athena/). 
 4. Queda el DashBoard de [Amazon QuickSight](https://aws.amazon.com/es/quicksight/) listo para hacer Data Analytics.  
 
 ---
@@ -51,7 +51,7 @@ Para realizar el despliegue de los recursos, debes instalar y configurar la cli 
 
 ```bash
 git clone https://github.com/elizabethfuentes12/first-steps-with-analytics-in-aws
-cd first-steps-with-analytics-in-aws/first-steps-abalytics
+cd first-steps-with-analytics-in-aws/first-steps-analytics
 ```
 
 ### 3. Creamos e iniciamos el ambiente virtual
@@ -66,7 +66,7 @@ Este ambiente virtual (venv) nos permite aislar las versiones del python que vam
 
 ### 4. Instalamos los requerimientos para el ambiente de python 
 
-Para que el ambiente pueda desplegarse, debemos agregar todas las librerías CDK necesarias en el archivo  [requirements.txt](https://github.com/elizabethfuentes12/AWS_ScanVideoS3Rekognition/blob/main/ScanVideoS3Rekognition/requirements.txt)
+Para que el ambiente pueda desplegarse, debemos agregar todas las librerías CDK necesarias en el archivo  [requirements.txt](https://github.com/elizabethfuentes12/first-steps-with-analytics-in-aws/first-steps-analytics/requirements.txt)
 
 
 ```zsh
@@ -75,7 +75,13 @@ pip install -r requirements.txt
 
 ### 5. Desplegando la aplicación
 
-Previo al despliegue de la aplicación en AWS Cloud debemos asegurarnos que este sin errores para que no salten errores durante el despliegue, eso lo hacemos con el siguiente comando que genera un template de cloudformation con nuestra definición de recursos en python.
+Si deseas desplegar tu solución en una region especifica debes modificar el archivo [app.py](https://github.com/elizabethfuentes12/first-steps-with-analytics-in-aws/first-steps-analytics/app.py) la siguiente linea: 
+
+```zsh
+env=cdk.Environment(region='us-east-1')
+```
+
+Antes de esplegar debemos asegurarnos que el código este sin errores, eso lo hacemos con el siguiente comando donde se genera un template de cloudformation con nuestra definición de recursos en python.
 
 ```bash
 cdk synth
@@ -95,7 +101,7 @@ Procedemos a desplegar la aplicación:
 cdk deploy
 ```
 
-### 7. Tips Para el despliegue
+### 6. Tips Para el despliegue
 
 
 El despliegue lo utiliza utilizando las credenciales por defecto de AWS, si desea usar un profile específico agregue --profile <nombre> al comando deploy:
@@ -113,14 +119,41 @@ cdk deploy
 
 ---
 
-### 8. La aplicación
+### 7. La aplicación
 
+Este CDK creará los siguientes elementos:
+- Bucket de S3 con el nombre **starting-etl-from-file-inputfilesXXXXXXXXXX**
+- Lambda Function con el nombre **process_new_file-STARTING-ETL-FROM-FILE**, el Glue Crawler se inicia con las siguientes lineas de comando dentro de la Lambda.
+
+``` python
+    # Comenzamos la ejecución del crawler
+    response = boto3.client('glue').start_crawler(
+        Name= os.environ.get('CRAWLER_NAME')
+    )
+```
+
+Entra acá [Boto3 para glue](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/glue.html#Glue.Client.start_crawler) si quieres aprender más sobre estas líneas. 
+
+- Una base de datos en Glue con el nombre **demo_db**
+- Glue Crawler con el nombre **raw-crawler-STARTING-ETL-FROM-FILE**, al correr el crawler se creara una tabla con prefijo **demoetl_**.
+
+Una vez verificado que los elementos se crearon de forma correcta, procede a cargar el archivo en el Bucket de S3 creado, este archivo debe tener formato .csv, .txt o .json, y todos los archivos que cargues después deben tener el mismo formato y esquema.
+
+Cuando el Crawler vuelva a estado **Ready** significa que la tabla ya fue creada en la base de datos **demo_db**. 
+
+Puedes ver la cantidad de Tablas creadas/actualizadas y además el tiempo de duración del Crawler. 
+
+![crawler](imagen/crawler.png)
+
+En el Catálogo de AWS Glue puedes acceder a la base de dato y a las tablas creadas:
+
+![catalogo](imagen/catalogo.png)
 
 
 
 ---
 
-### 9. Eliminar el stack de la aplicación
+### 8. Eliminar el stack de la aplicación
 
 Esta aplicación no elimina el bucket si contiene videos, por lo que primero debes vaciar el bucket y luego proceder a destruir el stak. 
 
@@ -174,9 +207,6 @@ ___
 
 ### Amazon Athena: 
 [Amazon Athena](https://aws.amazon.com/es/athena/) es un servicio de consultas interactivo que facilita el análisis de datos en Amazon S3 con SQL estándar. Athena no tiene servidor, de manera que no es necesario administrar infraestructura y solo paga por las consultas que ejecuta.
-
-### Amazon EventBridge: 
-[Amazon EventBridge](https://aws.amazon.com/es/eventbridge/) es un bus de eventos sin servidor que facilita la creación de aplicaciones basadas en eventos a escala mediante eventos generados por sus aplicaciones, aplicaciones integradas de software como servicio (SaaS) y servicios de AWS.
 
 ### Amazon QuickSight: 
 [Amazon QuickSight](https://aws.amazon.com/es/quicksight/) es un servicio de análisis empresarial muy rápido, fácil de utilizar y administrado en la nube que facilita a todos los empleados de una organización la compilación de visualizaciones, la realización de análisis ad-hoc y la obtención rápida de información empresarial a partir de sus datos en cualquier momento y en cualquier dispositivo.
