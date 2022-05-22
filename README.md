@@ -210,23 +210,6 @@ cdk destroy
 
 ## ¡¡Happy developing 😁!!
 
-
----
-
-
-## Adicional 🤔 ⚙️ 🧰
-
-![fase2](imagen/fase2.jpg)
-
-En este adicional, en vez de dejar un archivo en [Amazon S3](https://aws.amazon.com/es/s3/) se deja en una carpeta de OneDrive. 
-
-1. Se deja el archivo en la carpeta de OneDrive, la cual esta siendo escuchada con un Webhook en [Amazon API Gateway](https://aws.amazon.com/es/api-gateway/). 
-2. [Amazon API Gateway](https://aws.amazon.com/es/api-gateway/) activa una [AWS Lambda](https://aws.amazon.com/es/lambda/) encargada de extraer la data de OneDrive y copiarla en S3, para que esto sea posible la Lambda debe obtener el Token y refresh_token desde [AWS Secrets Manager](https://aws.amazon.com/es/secrets-manager/). 
-4. Retomamos el paso 1 de la arquitectura de la solucion anterior. 
-
-
-🔜 Pronto en una próxima publicación.. 
-
 ___
 
 ## Servicios involucrados en la solución son
