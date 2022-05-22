@@ -8,7 +8,7 @@
 
 ## Introducción 👩🏻‍💻👋
 
-**Data Analytics** 📉 es un concepto muy utilizado hoy en día, es casi un pecado no saber que **Data Analytics** es el proceso de recompilar, procesar y analizar datos para usarlos tomar decisiones en base a ellos.
+**Data Analytics** 📉 es un concepto muy utilizado hoy en día, es casi un pecado no saber que **Data Analytics** es el proceso de recopilar, procesar y analizar datos para usarlos tomar decisiones en base a ellos.
 
 **Data Analytics** te permite combinar datos para crear soluciones que ayuden a las empresas a decidir donde y cuando lanzar nuevos productos, cuando ofrecer descuentos, analizar gastos y buscar ahorros, es posible crear modelos de machine learning para realizar mejoras como customer personalization, detención de fraude, alertas en tiempo real, comportamiento de tus usuarios y crear modelos que mejoren financias y predigan la forma de hacer mejores inversiones. 
 
