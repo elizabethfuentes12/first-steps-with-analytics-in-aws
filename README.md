@@ -2,7 +2,7 @@
 
 ![Portada](imagen/cover.png)
 
- 🇻🇪🇨🇱 [Dev.to](https://dev.to/elizabethfuentes12) [Linkedin](https://www.linkedin.com/in/lizfue/) [GitHub](https://github.com/elizabethfuentes12/) [Twitter](https://twitter.com/elizabethfue12)
+ 🇻🇪🇨🇱 [Dev.to](https://dev.to/elizabethfuentes12) [Linkedin](https://www.linkedin.com/in/lizfue/) [GitHub](https://github.com/elizabethfuentes12/) [Twitter](https://twitter.com/elizabethfue12) [AWS Girls Chile](https://www.linkedin.com/company/aws-girls-cl/) [AWS Girls Chile Instagram](https://www.instagram.com/awsgirlschile/?hl=es)
 
 ---
 
@@ -277,5 +277,9 @@ Te dejo mis redes para que me sigas:
 [GitHub](https://github.com/elizabethfuentes12/)
 
 [Twitter](https://twitter.com/elizabethfue12)
+
+[AWS Girls Chile](https://www.linkedin.com/company/aws-girls-cl/) 
+
+[AWS Girls Chile Instagram](https://www.instagram.com/awsgirlschile/?hl=es)
 
 🇻🇪🇨🇱
