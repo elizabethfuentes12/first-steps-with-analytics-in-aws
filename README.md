@@ -51,7 +51,7 @@ Para realizar el despliegue de los recursos, debes instalar y configurar la cli 
 
 ```bash
 git clone https://github.com/elizabethfuentes12/first-steps-with-analytics-in-aws
-cd first-steps-with-analytics-in-aws/first-steps-analytics
+cd first-steps-analytics
 ```
 
 ### 3. Creamos e iniciamos el ambiente virtual
