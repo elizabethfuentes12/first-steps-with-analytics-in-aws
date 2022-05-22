@@ -122,8 +122,54 @@ cdk deploy
 ### 7. La aplicación 👩🏻‍💻
 
 Este CDK creará los siguientes elementos:
+
+- Evento de notificación para que la lamnbda lea el Bucket cuando un archivo nuevo se ha agregado:
+
+``` python
+    new_object = aws_s3_notifications.LambdaDestination(new_file_lambda)
+
+    # Aca le agregamos la notificacion al bucket para que invoque la lambda cuando haya un nuevo objeto
+
+    input_bucket.add_event_notification(s3.EventType.OBJECT_CREATED, new_object)
+```
+
+- Permisos necesarios para que el crawler pueda leer el bucket S3:
+
+``` python
+statement = iam.PolicyStatement( actions=["s3:GetObject","s3:PutObject"],
+            resources=[
+                "arn:aws:s3:::{}".format(input_bucket.bucket_name),
+                "arn:aws:s3:::{}/*".format(input_bucket.bucket_name)])
+
+        write_to_s3_policy = iam.PolicyDocument(statements=[statement])
+
+glue_role = iam.Role(
+                self, 'crawler', role_name = 'CrawlerDemoCDK',
+                inline_policies=[write_to_s3_policy],
+                assumed_by=iam.ServicePrincipal('glue.amazonaws.com'),
+                managed_policies = [ iam.ManagedPolicy.from_aws_managed_policy_name('service-role/AWSGlueServiceRole')]
+            )
+```
+
 - Bucket de S3 con el nombre **starting-etl-from-file-inputfilesXXXXXXXXXX**
-- Lambda Function con el nombre **process_new_file-STARTING-ETL-FROM-FILE**, el Glue Crawler se inicia con las siguientes lineas de comando dentro de la Lambda.
+
+``` python
+input_bucket = s3.Bucket(self,"input_files")
+
+```
+
+- Lambda Function con el nombre **process_new_file-STARTING-ETL-FROM-FILE**, 
+
+``` python
+new_file_lambda = aws_lambda.Function (
+            self,"process_new_file", 
+            function_name=f"process_new_file-{STACK_NAME}",
+            handler='lambda_function.lambda_handler',
+            code=aws_lambda.Code.from_asset("./lambdas/process_new_file/"),
+            **PYTHON_BASE_CONFIG,environment={}
+        )
+```
+el Glue Crawler se inicia con las siguientes lineas de comando dentro de la Lambda.
 
 ``` python
     # Comenzamos la ejecución del crawler
@@ -135,7 +181,25 @@ Este CDK creará los siguientes elementos:
 Entra acá [Boto3 para glue](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/glue.html#Glue.Client.start_crawler) si quieres aprender más sobre estas líneas. 
 
 - Una base de datos en Glue con el nombre **demo_db**
+
+``` python
+ glue_db = glue.Database(self, "demo_etl",database_name="demo_db")
+``` 
+
 - Glue Crawler con el nombre **raw-crawler-STARTING-ETL-FROM-FILE**, al correr el crawler se creara una tabla con prefijo **demoetl_**.
+
+``` python
+
+    glue_crawler = aws_glue.CfnCrawler(
+        self, 'glue-crawler', description="Rastreador para nuevos datos raw",
+        name=f'raw-crawler-{STACK_NAME}',
+        database_name=glue_db.database_name,
+        schedule=None,
+        role=glue_role.role_arn,
+        table_prefix="demoetl_",
+        targets={"s3Targets": [{"path": "s3://{}/{}".format(input_bucket.bucket_name, S3_RAW_PREFIX)}]}
+    )
+```
 
 Una vez verificado que los elementos se crearon de forma correcta, procede a cargar el archivo en el Bucket de S3 creado, este archivo debe tener formato .csv, .txt o .json, y todos los archivos que cargues después deben tener el mismo formato y esquema.
 
