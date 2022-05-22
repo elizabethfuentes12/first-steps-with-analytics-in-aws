@@ -3,7 +3,7 @@ import os
 
 import aws_cdk as cdk
 
-from first_steps_abalytics.first_steps_abalytics_stack import FirstStepsAbalyticsStack
+from first_steps_analytics.first_steps_abalytics_stack import FirstStepsAbalyticsStack
 
 
 app = cdk.App()

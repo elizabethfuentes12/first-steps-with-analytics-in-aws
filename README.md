@@ -2,25 +2,21 @@
 
 ![Portada](imagen/cover.png)
 
+ 🇻🇪🇨🇱 [Dev.to](https://dev.to/elizabethfuentes12) [Linkedin](https://www.linkedin.com/in/lizfue/) [GitHub](https://github.com/elizabethfuentes12/) [Twitter](https://twitter.com/elizabethfue12)
+
 ---
 
 ## Introducción 👩🏻‍💻👋
 
-**Data analytics** 📉 es un concepto muy utilizado hoy en dia, ya es casi un pecado no saber que **Data Analytics** es el proceso de compilar, procesar y analizar datos para que puedas usarlos en la tomar decisiones.
+**Data Analytics** es un concepto muy utilizado hoy en día, es casi un pecado no saber que **Data Analytics** es el proceso de recompilar, procesar y analizar datos para usarlos tomar decisiones en base a ellos.
 
-El análisis de datos es vital para que las empresas, no importa su tamaño. 
+**Data Analytics** te permite combinar datos para crear soluciones que ayuden a las empresas a decidir donde y cuando lanzar nuevos productos, cuando ofrecer descuentos, analizar gastos y buscar ahorros, es posible crear modelos de machine learning para realizar mejoras como customer personalization, detención de fraude, alertas en tiempo real, comportamiento de tus usuarios y crear modelos que mejoren financias y predigan la forma de hacer mejores inversiones. 
 
-Porque con ello puedes combinar datos para crear soluciones que ayuden a las empresas a decidir donde y cuando lanzar nuevos productos, cuando ofrecer descuentos, analizar gastos y buscar ahorros. Aplicar machine learning para Customer personalization, detecion de fraude, alertas en tiempo real, comportamiento de tus usuarios y crear modelos que mejoren financias y predigan la forma de hacer mejores inversiones. 
+El **Data Analytics** es importante para las empresas sin importar su tamaño, sin ello las decisiones serian tomadas por intuición o suerte. 
 
-Sin el análisis de los datos, las decisiones serian tomadas por intuición o suerte. 
+La data se puede generar de varias formas, recopilando clics de una página web, través de una API, encuestas, bases de datos locales, si sabés donde mirar prácticamente todo es data. El desafío está en almacenarla en un mismo lugar, crear Data Lakes, para poder hacer cruces y análisis con ella, hacer uso de ella. 
 
-El problema más importante que tiene data analytics es encontrar la data, capturarla, crearla y tenerla disponible para poder hacer uso de ella, en términos más generales armar un data lake. 
-
-La data se puede generar de mi millones de formas, puedes a través de una API que este almacenando clicks o que este extrayendo data de alguna pagina web o servicio, puedes tener bases de datos on-premise. 
-
-El desafio cuando tienes varias fuentes de datos es almacenarla toda junta para poder ingestarla, hacer crucer entre ellas, análisis en fin: hacer data analytics. 
-
-En esta blog te voy a entregar las herramientas que te va a permitir darle solución a ese desafío, no solo vas a aprender como almacenar toda la data junta si no como crear una base de datos con ella y por supuesto crear un dashboard. 
+En este blog te voy a mostrar cómo crear un pequeño pipeline de **Data Analytics**, donde se deja un archivo en un storage y de ahí es procesado para crear una tabla dentro de una base de datos de la cual se alimenta un dasboard de Business Inteligence. 
 
 Y.. Lo podrás desplegar listo para usar con un par de comandos usando [CDK](https://aws.amazon.com/es/cdk/?nc1=h_ls) 🚀 👩🏻‍🚀.
 
@@ -40,7 +36,7 @@ Y.. Lo podrás desplegar listo para usar con un par de comandos usando [CDK](htt
 ## Despliegue 🚀 👩🏻‍🚀
 
 
-**Para crear la aplicación debes seguir los siguientes pasos:**
+**Para crear la aplicación en tu cuenta AWS debes seguir los siguientes pasos:**
 
 ### 1. Instalar CDK
 
@@ -55,7 +51,7 @@ Para realizar el despliegue de los recursos, debes instalar y configurar la cli 
 
 ```bash
 git clone https://github.com/elizabethfuentes12/first-steps-with-analytics-in-aws
-cd AWS_ScanVideoS3Rekognition/ScanVideoS3Rekognition
+cd first-steps-with-analytics-in-aws/first-steps-abalytics
 ```
 
 ### 3. Creamos e iniciamos el ambiente virtual
@@ -67,23 +63,8 @@ source .venv/bin/activate
 
 Este ambiente virtual (venv) nos permite aislar las versiones del python que vamos a utilizar como también de librerías asociadas. Con esto podemos tener varios proyectos con distintas configuraciones.
 
-### 4. Explicación del código
 
-En el GitHub esta el código listo para desplegar, a continuación una breve explicación:
-
-Esta herramienta esta desplegada en *us-east-1*, si quieres cambiar la región debes hacerlo en [scan_video_s3_rekognition.py](https://github.com/elizabethfuentes12/AWS_ScanVideoS3Rekognition/blob/main/ScanVideoS3Rekognition/scan_video_s3_rekognition/scan_video_s3_rekognition_stack.py) 
-
-```python
-REGION_NAME = 'tu_region'
-```
- 
-Antes de iniciar debes agregar una dirección de correo valida en [scan_video_s3_rekognition.py](https://github.com/elizabethfuentes12/AWS_ScanVideoS3Rekognition/blob/main/ScanVideoS3Rekognition/scan_video_s3_rekognition/scan_video_s3_rekognition_stack.py)  : 
-
-```python
-email="tucorreo@correo.com"
-```
-
-### 5. Instalamos los requerimientos para el ambiente de python 
+### 4. Instalamos los requerimientos para el ambiente de python 
 
 Para que el ambiente pueda desplegarse, debemos agregar todas las librerías CDK necesarias en el archivo  [requirements.txt](https://github.com/elizabethfuentes12/AWS_ScanVideoS3Rekognition/blob/main/ScanVideoS3Rekognition/requirements.txt)
 
@@ -92,7 +73,7 @@ Para que el ambiente pueda desplegarse, debemos agregar todas las librerías CDK
 pip install -r requirements.txt
 ```
 
-### 6. Desplegando la aplicación
+### 5. Desplegando la aplicación
 
 Previo al despliegue de la aplicación en AWS Cloud debemos asegurarnos que este sin errores para que no salten errores durante el despliegue, eso lo hacemos con el siguiente comando que genera un template de cloudformation con nuestra definición de recursos en python.
 
@@ -228,3 +209,5 @@ Te dejo mis redes para que me sigas:
 [GitHub](https://github.com/elizabethfuentes12/)
 
 [Twitter](https://twitter.com/elizabethfue12)
+
+🇻🇪🇨🇱
