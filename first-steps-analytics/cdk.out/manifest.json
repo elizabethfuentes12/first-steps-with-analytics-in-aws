@@ -1,0 +1,166 @@
+{
+  "version": "16.0.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "AwsFirstStepsStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "AwsFirstStepsStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "AwsFirstStepsStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "AwsFirstStepsStack.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/17fa73b7ff2fb474a505ae7eeeafc80241a124e0b7fd7dbd0b67f52f14ff327c.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "AwsFirstStepsStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "AwsFirstStepsStack.assets"
+      ],
+      "metadata": {
+        "/AwsFirstStepsStack/input_files/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "inputfiles5C864080"
+          }
+        ],
+        "/AwsFirstStepsStack/input_files/Notifications/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "inputfilesNotifications31C3B68A"
+          }
+        ],
+        "/AwsFirstStepsStack/input_files/AllowBucketNotificationsToAwsFirstStepsStackprocessnewfile91A63D70": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "inputfilesAllowBucketNotificationsToAwsFirstStepsStackprocessnewfile91A63D7028A3F9E6"
+          }
+        ],
+        "/AwsFirstStepsStack/process_new_file/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "processnewfileServiceRole1FEB02E8"
+          }
+        ],
+        "/AwsFirstStepsStack/process_new_file/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "processnewfileServiceRoleDefaultPolicy49D3A721"
+          }
+        ],
+        "/AwsFirstStepsStack/process_new_file/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "processnewfileDEEFDC8F"
+          }
+        ],
+        "/AwsFirstStepsStack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleB6FB88EC"
+          }
+        ],
+        "/AwsFirstStepsStack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleDefaultPolicy2CF63D36"
+          }
+        ],
+        "/AwsFirstStepsStack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BucketNotificationsHandler050a0587b7544547bf325f094a3db8347ECC3691"
+          }
+        ],
+        "/AwsFirstStepsStack/demo_etl/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "demoetl20E4D8A4"
+          }
+        ],
+        "/AwsFirstStepsStack/crawler/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "crawlerBDCA03E5"
+          }
+        ],
+        "/AwsFirstStepsStack/crawler/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "crawlerDefaultPolicyDD4C8206"
+          }
+        ],
+        "/AwsFirstStepsStack/glue-crawler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "gluecrawler"
+          }
+        ],
+        "/AwsFirstStepsStack/crawler_state_change/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "crawlerstatechangeE2AEB95E"
+          }
+        ],
+        "/AwsFirstStepsStack/crawler_state_change/AllowEventRuleAwsFirstStepsStackpostcrawler8558EB8C": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "crawlerstatechangeAllowEventRuleAwsFirstStepsStackpostcrawler8558EB8CF90CC04A"
+          }
+        ],
+        "/AwsFirstStepsStack/post_crawler/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "postcrawlerServiceRoleA2B2E63F"
+          }
+        ],
+        "/AwsFirstStepsStack/post_crawler/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "postcrawlerServiceRoleDefaultPolicyC11B3994"
+          }
+        ],
+        "/AwsFirstStepsStack/post_crawler/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "postcrawler6801AAD6"
+          }
+        ],
+        "/AwsFirstStepsStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/AwsFirstStepsStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ]
+      },
+      "displayName": "AwsFirstStepsStack"
+    }
+  }
+}

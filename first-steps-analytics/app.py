@@ -2,12 +2,14 @@
 import os
 
 import aws_cdk as cdk
+from aws_cdk import DefaultStackSynthesizer
 
-from first_steps_analytics.first_steps_abalytics_stack import FirstStepsAbalyticsStack
+from first_steps_analytics.first_steps_analytics_stack import AwsFirstStepsStack
 
 
 app = cdk.App()
-FirstStepsAbalyticsStack(app, "FirstStepsAbalyticsStack",
+AwsFirstStepsStack(app, "AwsFirstStepsStack", 
+                   synthesizer = DefaultStackSynthesizer(generate_bootstrap_version_rule=False)
     # If you don't specify 'env', this stack will be environment-agnostic.
     # Account/Region-dependent features and context lookups will not work,
     # but a single synthesized template can be deployed anywhere.
@@ -20,7 +22,7 @@ FirstStepsAbalyticsStack(app, "FirstStepsAbalyticsStack",
     # Uncomment the next line if you know exactly what Account and Region you
     # want to deploy the stack to. */
 
-    #env=cdk.Environment(region='us-east-1'),
+    #env=cdk.Environment(account='123456789012', region='us-east-1'),
 
     # For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html
     )

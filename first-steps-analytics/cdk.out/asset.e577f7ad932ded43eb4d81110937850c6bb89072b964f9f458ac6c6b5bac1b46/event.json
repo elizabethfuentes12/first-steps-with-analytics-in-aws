@@ -1,0 +1,38 @@
+{
+    "Records": [
+        {
+            "eventVersion": "2.1",
+            "eventSource": "aws:s3",
+            "awsRegion": "us-east-1",
+            "eventTime": "2021-02-28T02:46:29.644Z",
+            "eventName": "ObjectCreated:Put",
+            "userIdentity": {
+                "principalId": "AWS:AIDAWQ6MYVD5OZON2DOPH"
+            },
+            "requestParameters": {
+                "sourceIPAddress": "186.105.15.130"
+            },
+            "responseElements": {
+                "x-amz-request-id": "2D1210D8E365FCA7",
+                "x-amz-id-2": "Wob3r4TeRKdtzp3XJHMSygfNpzKt8kDHEhh0VbR8qvySjjdGgjc/uNEwq/peCZr6AynpuYoWkfmWbM+QULNCdY/eGqhZUOhw"
+            },
+            "s3": {
+                "s3SchemaVersion": "1.0",
+                "configurationId": "new_upload",
+                "bucket": {
+                    "name": "homologador17aa0fc39175447b93c1e7309e8170f8191332-dev",
+                    "ownerIdentity": {
+                        "principalId": "AINRMT6KIBAF1"
+                    },
+                    "arn": "arn:aws:s3:::homologador17aa0fc39175447b93c1e7309e8170f8191332-dev"
+                },
+                "object": {
+                    "key": "car_data.csv",
+                    "size": 115781,
+                    "eTag": "f9a288d21ec73743f2a3f546d3837494",
+                    "sequencer": "00603B0406DCBF4158"
+                }
+            }
+        }
+    ]
+}
