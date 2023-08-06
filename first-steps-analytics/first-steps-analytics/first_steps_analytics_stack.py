@@ -1,9 +1,8 @@
 from aws_cdk import (
     Duration,
-
     Stack,
-    aws_lambda,
     # aws_sqs as sqs,
+    aws_lambda,
     aws_s3 as s3,
     aws_s3_notifications,
     aws_events_targets as targets,
@@ -12,6 +11,7 @@ from aws_cdk import (
     aws_glue_alpha as glue,
     aws_glue,
     aws_iam as iam,
+
 )
 from constructs import Construct
 
@@ -25,8 +25,7 @@ PYTHON_BASE_CONFIG = BASE_LAMBDA_CONFIG = dict (
     tracing= aws_lambda.Tracing.ACTIVE,
     runtime = aws_lambda.Runtime.PYTHON_3_8)
 
-
-class StartingEltFromFileStack(Stack):
+class AwsFirstStepsStack(Stack):
 
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
@@ -72,15 +71,16 @@ class StartingEltFromFileStack(Stack):
                 "arn:aws:s3:::{}".format(input_bucket.bucket_name),
                 "arn:aws:s3:::{}/*".format(input_bucket.bucket_name)])
 
-        write_to_s3_policy = iam.PolicyDocument(statements=[statement])
+        # write_to_s3_policy = iam.PolicyDocument(statements=[statement])
         
         glue_role = iam.Role(
                 self, 'crawler', role_name = 'CrawlerDemoCDK',
-                inline_policies=[write_to_s3_policy],
+                #inline_policies=[write_to_s3_policy],
                 assumed_by=iam.ServicePrincipal('glue.amazonaws.com'),
                 managed_policies = [ iam.ManagedPolicy.from_aws_managed_policy_name('service-role/AWSGlueServiceRole')]
             )
-
+        
+        glue_role.add_to_policy(statement)
 
         # Crawler para la ejecución del escaneo y descubrimiento de datos en los archivos
         # Este crawler crea o actualiza las tablas en Catálogo de datos
@@ -132,6 +132,8 @@ class StartingEltFromFileStack(Stack):
         # Asignamos el Target
 
         event_rule.add_target(targets.LambdaFunction(handler=post_crawler_lambda))
+
+
 
 
 
