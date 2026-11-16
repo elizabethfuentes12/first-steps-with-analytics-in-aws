@@ -23,7 +23,7 @@ PYTHON_BASE_CONFIG = BASE_LAMBDA_CONFIG = dict (
     timeout=Duration.seconds(20),       
     memory_size=128, 
     tracing= aws_lambda.Tracing.ACTIVE,
-    runtime = aws_lambda.Runtime.PYTHON_3_8)
+    runtime = aws_lambda.Runtime.PYTHON_3_13)
 
 class AwsFirstStepsStack(Stack):
 
